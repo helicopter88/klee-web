@@ -24,11 +24,10 @@ controllers.controller('MainCtrl', [
 
         $scope.opts = {
             symArgs: {
-                enabled: false,
-                open: false
+                enabled: false
             },
             symFiles: {
-                open: false
+                enabled: false
             }
         };
 
@@ -54,7 +53,6 @@ controllers.controller('MainCtrl', [
             $event.stopPropagation();
             $scope.opts.symFiles.enabled = !$scope.opts.symFiles.enabled;
             $scope.submission.runConfiguration.stdinEnabled = !$scope.submission.runConfiguration.stdinEnabled;
-            $scope.opts.symFiles.open = !$scope.opts.symFiles.open;
         };
 
         $scope.resetSymArgs = function() {

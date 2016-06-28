@@ -58,7 +58,7 @@ class WorkerRunner():
                 env_vars.extend(['-e', '{}={}'.format(key, value)])
 
         flags = self.docker_flags + env_vars
-        return ['sudo', 'docker', 'run'] + flags + ['kleeweb/klee']
+        return ['sudo', 'docker', 'run'] + flags + ['klee/klee']
 
     @property
     def docker_flags(self):
