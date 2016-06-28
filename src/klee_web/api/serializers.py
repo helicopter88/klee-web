@@ -22,14 +22,18 @@ class RunConfigurationField(serializers.Field):
                 'size': obj.size_sym_args
             },
             'stdin_enabled': obj.stdin_enabled,
+            'symio_enabled': obj.symio_enabled,
             'size_files': obj.size_files,
+            'size_symio': obj.size_symio,
             'num_files': obj.num_files
         }
 
     def to_internal_value(self, data):
         return {
             'stdin_enabled': data['stdin_enabled'],
+            'symio_enabled': data['symio_enabled'],
             'size_files': data['size_files'],
+            'size_symio': data['size_symio'],
             'num_files': data['num_files'],
             'min_sym_args': data['sym_args']['range'][0],
             'max_sym_args': data['sym_args']['range'][1],

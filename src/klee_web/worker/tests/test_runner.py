@@ -63,8 +63,10 @@ class TestWorkerRunner(unittest.TestCase):
     def test_symfiles(self):
         self.run_klee_test('symfiles', {
             'stdin_enabled': True,
+            'symio_enabled': False,
             'num_files': 0,
-            'size_files': 1
+            'size_files': 1,
+            'size_symio': 0
         })
 
     def test_fail_on_invalid_syntax(self):

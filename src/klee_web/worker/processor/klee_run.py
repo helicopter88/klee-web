@@ -25,6 +25,11 @@ class KleeRunProcessor(BaseProcessor):
             if min_sym_args is not None and max_sym_args and size_sym_args:
                 result += ['--sym-args', str(min_sym_args),
                            str(max_sym_args), str(size_sym_args)]
+                           
+        symio_enabled = klee_args.get('symio_enabled')
+        if symio_enabled:
+            size_symio = klee_args.get('size_symio')
+            result += ['--sym-stdin', str(size_symio)]
 
         return result
 
