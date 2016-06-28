@@ -16,17 +16,25 @@ controllers.controller('MainCtrl', [
                     size: 0
                 },
                 stdinEnabled: false,
+                symInEnabled: false,
                 numFiles: 0,
-                sizeFiles: 0
+                sizeFiles: 0,
+                sizeSymIn: 0
             }
         };
         $scope.defaultSubmission = angular.copy($scope.submission);
 
         $scope.opts = {
             symArgs: {
+                open:false,
                 enabled: false
             },
             symFiles: {
+                open:false,
+                enabled: false
+            },
+            symIn: {
+                open:false,
                 enabled: false
             }
         };
@@ -46,13 +54,29 @@ controllers.controller('MainCtrl', [
             $event.stopPropagation();
             $scope.opts.symArgs.enabled = !$scope.opts.symArgs.enabled;
             $scope.opts.symArgs.open = !$scope.opts.symArgs.open;
+            $scope.submission.runConfiguration.symArgs = {
+                range: [0, 0],
+                size: 0
+            };
         };
 
         $scope.toggleSymFiles = function ($event) {
             $event.preventDefault();
             $event.stopPropagation();
             $scope.opts.symFiles.enabled = !$scope.opts.symFiles.enabled;
+            $scope.opts.symFiles.open = !$scope.opts.symFiles.open;
             $scope.submission.runConfiguration.stdinEnabled = !$scope.submission.runConfiguration.stdinEnabled;
+            $scope.submission.runConfiguration.numFiles = 0;
+            $scope.submission.runConfiguration.sizeFiles = 0;
+        };
+        
+        $scope.toggleSymIn = function ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+            $scope.opts.symIn.enabled = !$scope.opts.symIn.enabled;
+            $scope.opts.symIn.open = !$scope.opts.symIn.open;
+            $scope.submission.runConfiguration.symInEnabled = !$scope.submission.runConfiguration.symInEnabled;
+            $scope.submission.runConfiguration.sizeSymIn = 0;
         };
 
         $scope.resetSymArgs = function() {
@@ -66,6 +90,14 @@ controllers.controller('MainCtrl', [
         $scope.resetSymFiles = function() {
             $scope.opts.symFiles.enabled = false;
             $scope.submission.runConfiguration.stdinEnabled = false; 
+            $scope.submission.runConfiguration.numFiles = 0;
+            $scope.submission.runConfiguration.sizeFiles = 0;
+        };
+        
+        $scope.resetSymIn = function() {
+            $scope.opts.symIn.enabled = false;
+            $scope.submission.runConfiguration.symInEnabled = false; 
+            $scope.submission.runConfiguration.sizeSymIn = 0; 
         };
 
         $scope.resetLoadedFile = function() {
@@ -339,6 +371,7 @@ controllers.controller('SidebarCtrl', [
                         size: 0
                     },
                     stdinEnabled: false,
+                    symInEnabled: false,
                     numFiles: 0,
                     sizeFiles: 0
                 }
