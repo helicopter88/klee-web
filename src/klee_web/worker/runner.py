@@ -65,7 +65,7 @@ class WorkerRunner():
     @property
     def docker_flags(self):
         flags = ['-t',
-                 '-c={}'.format(worker_config.cpu_share),
+                 '--cpu-shares={}'.format(worker_config.cpu_share),
                  '-v', '{}:{}'.format(self.tempdir, self.DOCKER_MOUNT_DIR),
                  '-w', self.DOCKER_MOUNT_DIR,
                  '--net="none"']
