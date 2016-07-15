@@ -28,10 +28,6 @@ it('test all', function(done1) {
             .click("#run-klee-btn")
             .wait("#result-output")
             .wait("#result-output")
-            .wait("#result-output")
-            .wait("#result-output")
-            .wait("#result-output")
-            .wait("#result-output")
             // Retrieve the result and check if the expected result matches
             .evaluate(getResult, function(actual) {
                 actual.replace(/(?:\r\n|\r|\n)/g, "\n").should.match(expected)
@@ -57,5 +53,6 @@ function updateCode(newCode) {
 }
 
 function getResult() {
+  if (document.querySelector('#result-output').innerText)
   return document.querySelector('#result-output').innerText;
 }
